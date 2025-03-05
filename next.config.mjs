@@ -4,7 +4,7 @@ const nextConfig = {
     API_BASE_URL:
       process.env.NODE_ENV === "development"
         ? "http://localhost:5000/api"
-        : "https://demandpoint-directoryapp-backend-production.up.railway.app/api",
+        : "https://directoryapp-backend.onrender.com/api",
   },
 };
 
