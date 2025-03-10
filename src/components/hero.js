@@ -93,37 +93,19 @@ export default function Hero() {
             artisans like yourself. Showcase your expertise, receive bookings,
             and secure payments, all in one place.
           </Typography>
-          <Stack
-            direction={{ xs: "column", sm: "row" }}
-            spacing={1}
-            sx={{ pt: 2, width: { xs: "100%", sm: "350px" } }}>
-            <TextField
-              id="email-hero"
-              hiddenLabel
-              size="small"
-              variant="outlined"
-              placeholder="Your email address"
-              fullWidth
-              slotProps={{
-                htmlInput: {
-                  autoComplete: "off",
-                  "aria-label": "Enter your email address",
-                },
-              }}
-            />
-            <Button
-              variant="contained"
-              color="primary"
-              size="small"
-              sx={{ minWidth: "fit-content" }}>
-              Start now
-            </Button>
-          </Stack>
+          <Button
+            variant="contained"
+            color="primary"
+            size="medium"
+            sx={{ minWidth: "fit-content" }}
+            href="/artisanform">
+            Join Now
+          </Button>
           <Typography
             variant="caption"
             color="text.secondary"
             sx={{ textAlign: "center" }}>
-            By clicking &quot;Start now&quot; you agree to our&nbsp;
+            By clicking &quot;Join now&quot; you agree to our&nbsp;
             <Link href="#" color="primary">
               Terms & Conditions
             </Link>
