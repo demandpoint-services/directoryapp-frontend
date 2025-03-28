@@ -74,7 +74,7 @@ export default function Dashboard(props) {
               pb: 5,
               mt: { xs: 8, md: 0 },
             }}>
-            {renderContent()} {/* Display the selected content */}
+            {renderContent()}
           </Stack>
         </Box>
       </Box>
