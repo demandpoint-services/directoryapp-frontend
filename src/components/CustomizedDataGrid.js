@@ -6,12 +6,9 @@ import { Button, Stack } from "@mui/material";
 // Function to update status (approve/decline)
 const handleStatusChange = async (id, newStatus, setRows) => {
   try {
-    await axios.patch(
-      `${process.env.NEXT_PUBLIC_API_BASE_URL}/artisans/${id}`,
-      {
-        status: newStatus,
-      }
-    );
+    await axios.patch(`${process.env.API_BASE_URL}/artisans/${id}`, {
+      status: newStatus,
+    });
 
     // Update state immutably
     setRows((prevRows) =>
@@ -94,7 +91,7 @@ export default function CustomizedDataGrid() {
     const fetchArtisans = async () => {
       try {
         const response = await axios.get(
-          `${process.env.NEXT_PUBLIC_API_BASE_URL}/artisans`
+          `${process.env.API_BASE_URL}/artisans`
         );
 
         const formattedData = response.data.map((artisan, index) => ({

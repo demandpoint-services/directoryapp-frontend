@@ -41,7 +41,7 @@ export default function ChartUserByState() {
     const fetchUsersByState = async () => {
       try {
         const response = await axios.get(
-          `${process.env.NEXT_PUBLIC_API_BASE_URL}/artisans`
+          `${process.env.API_BASE_URL}/artisans`
         );
 
         // Group users by state
