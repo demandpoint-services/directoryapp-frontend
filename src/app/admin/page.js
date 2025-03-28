@@ -1,12 +1,12 @@
 "use client";
 
 import * as React from "react";
+import { useState } from "react";
 import { alpha } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 import AppNavbar from "../../components/AppNavbar";
-import Header from "../../components/Header";
 import MainGrid from "../../components/MainGrid";
 import SideMenu from "../../components/SideMenu";
 import AppTheme from "../shared-theme/AppTheme";
@@ -17,6 +17,11 @@ import {
   treeViewCustomizations,
 } from "../../theme/customizations";
 
+// Import different page components
+import Analytics from "../../components/Analytics";
+import Clients from "../../components/Clients";
+import Tasks from "../../components/Tasks";
+
 const xThemeComponents = {
   ...chartsCustomizations,
   ...dataGridCustomizations,
@@ -25,13 +30,33 @@ const xThemeComponents = {
 };
 
 export default function Dashboard(props) {
+  const [selectedPage, setSelectedPage] = useState("Home");
+
+  // Function to update the selected page
+  const handleMenuClick = (page) => {
+    setSelectedPage(page);
+  };
+
+  // Render different content based on selected menu item
+  const renderContent = () => {
+    switch (selectedPage) {
+      case "Analytics":
+        return <Analytics />;
+      case "Clients":
+        return <Clients />;
+      case "Tasks":
+        return <Tasks />;
+      default:
+        return <MainGrid />;
+    }
+  };
+
   return (
     <AppTheme {...props} themeComponents={xThemeComponents}>
       <CssBaseline enableColorScheme />
       <Box sx={{ display: "flex" }}>
-        <SideMenu />
+        <SideMenu onMenuClick={handleMenuClick} />
         <AppNavbar />
-        {/* Main content */}
         <Box
           component="main"
           sx={(theme) => ({
@@ -49,8 +74,7 @@ export default function Dashboard(props) {
               pb: 5,
               mt: { xs: 8, md: 0 },
             }}>
-            <Header />
-            <MainGrid />
+            {renderContent()} {/* Display the selected content */}
           </Stack>
         </Box>
       </Box>

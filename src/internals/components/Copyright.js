@@ -15,8 +15,8 @@ export default function Copyright(props) {
         ...(Array.isArray(props.sx) ? props.sx : [props.sx]),
       ]}>
       {"Copyright © "}
-      <Link color="inherit" href="https://mui.com/">
-        Sitemark
+      <Link color="inherit" href="https://www.demandpoint.app/">
+        Demand Point Services
       </Link>{" "}
       {new Date().getFullYear()}
       {"."}

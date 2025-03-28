@@ -4,9 +4,9 @@ import Avatar from "@mui/material/Avatar";
 import MuiDrawer, { drawerClasses } from "@mui/material/Drawer";
 import Box from "@mui/material/Box";
 import Divider from "@mui/material/Divider";
+import Image from "next/image";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
-import SelectContent from "./SelectContent";
 import MenuContent from "./MenuContent";
 import CardAlert from "./CardAlert";
 import OptionsMenu from "./OptionsMenu";
@@ -24,7 +24,13 @@ const Drawer = styled(MuiDrawer)({
   },
 });
 
-export default function SideMenu() {
+const logoStyle = {
+  width: "10rem",
+  height: "auto",
+  margin: "auto",
+};
+
+export default function SideMenu({ onMenuClick }) {
   return (
     <Drawer
       variant="permanent"
@@ -40,7 +46,13 @@ export default function SideMenu() {
           mt: "calc(var(--template-frame-height, 0px) + 4px)",
           p: 1.5,
         }}>
-        <SelectContent />
+        <Image
+          src="/demandpoint.png"
+          alt="Demand Point logo"
+          width={200}
+          height={30}
+          style={logoStyle}
+        />
       </Box>
       <Divider />
       <Box
@@ -50,8 +62,8 @@ export default function SideMenu() {
           display: "flex",
           flexDirection: "column",
         }}>
-        <MenuContent />
-        <CardAlert />
+        {/* Pass onMenuClick to MenuContent */}
+        <MenuContent onMenuClick={onMenuClick} />
       </Box>
       <Stack
         direction="row"
