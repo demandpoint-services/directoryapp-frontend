@@ -12,7 +12,12 @@ import MenuButton from "./MenuButton";
 import MenuContent from "./MenuContent";
 import CardAlert from "./CardAlert";
 
-function SideMenuMobile({ open, toggleDrawer }) {
+function SideMenuMobile({ open, toggleDrawer, onMenuClick }) {
+  const handleMenuClick = (page) => {
+    onMenuClick(page);
+    toggleDrawer(false)();
+  };
+
   return (
     <Drawer
       anchor="right"
@@ -25,23 +30,18 @@ function SideMenuMobile({ open, toggleDrawer }) {
           backgroundColor: "background.paper",
         },
       }}>
-      <Stack
-        sx={{
-          maxWidth: "70dvw",
-          height: "100%",
-        }}>
+      <Stack sx={{ maxWidth: "70dvw", height: "100%" }}>
         <Stack direction="row" sx={{ p: 2, pb: 0, gap: 1 }}>
           <Stack
             direction="row"
             sx={{ gap: 1, alignItems: "center", flexGrow: 1, p: 1 }}>
             <Avatar
-              sizes="small"
               alt="Riley Carter"
               src="/static/images/avatar/7.jpg"
               sx={{ width: 24, height: 24 }}
             />
             <Typography component="p" variant="h6">
-              Riley Carter
+              Admin
             </Typography>
           </Stack>
           <MenuButton showBadge>
@@ -50,7 +50,8 @@ function SideMenuMobile({ open, toggleDrawer }) {
         </Stack>
         <Divider />
         <Stack sx={{ flexGrow: 1 }}>
-          <MenuContent />
+          {/* Pass handleMenuClick to MenuContent */}
+          <MenuContent onMenuClick={handleMenuClick} />
           <Divider />
         </Stack>
         <CardAlert />
@@ -70,6 +71,7 @@ function SideMenuMobile({ open, toggleDrawer }) {
 SideMenuMobile.propTypes = {
   open: PropTypes.bool,
   toggleDrawer: PropTypes.func.isRequired,
+  onMenuClick: PropTypes.func.isRequired,
 };
 
 export default SideMenuMobile;
