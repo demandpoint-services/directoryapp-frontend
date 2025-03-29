@@ -68,7 +68,7 @@ const createColumns = (setRows) => [
             onClick={() =>
               handleStatusChange(params.row.id, "approved", setRows)
             }>
-            Approve
+            Activate
           </Button>
         )}
         {params.row.status !== "declined" && (
@@ -79,7 +79,7 @@ const createColumns = (setRows) => [
             onClick={() =>
               handleStatusChange(params.row.id, "declined", setRows)
             }>
-            Decline
+            Deactivate
           </Button>
         )}
       </Stack>
