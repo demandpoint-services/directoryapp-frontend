@@ -30,7 +30,8 @@ const Toolbar = styled(MuiToolbar)({
   },
 });
 
-export default function AppNavbar() {
+export default function AppNavbar({ onMenuClick }) {
+  // Accept onMenuClick
   const [open, setOpen] = React.useState(false);
 
   const toggleDrawer = (newOpen) => () => {
@@ -52,29 +53,29 @@ export default function AppNavbar() {
       <Toolbar variant="regular">
         <Stack
           direction="row"
-          sx={{
-            alignItems: "center",
-            flexGrow: 1,
-            width: "100%",
-            gap: 1,
-          }}>
+          sx={{ alignItems: "center", flexGrow: 1, width: "100%", gap: 1 }}>
           <Stack
             direction="row"
             spacing={1}
             sx={{ justifyContent: "center", mr: "auto" }}>
             <CustomIcon />
             <Typography
-              variant="h4"
-              component="h1"
+              variant="h5"
+              component="h3"
               sx={{ color: "text.primary" }}>
-              Dashboard
+              Admin Panel
             </Typography>
           </Stack>
           <ColorModeIconDropdown />
           <MenuButton aria-label="menu" onClick={toggleDrawer(true)}>
             <MenuRoundedIcon />
           </MenuButton>
-          <SideMenuMobile open={open} toggleDrawer={toggleDrawer} />
+          {/* Pass onMenuClick */}
+          <SideMenuMobile
+            open={open}
+            toggleDrawer={toggleDrawer}
+            onMenuClick={onMenuClick}
+          />
         </Stack>
       </Toolbar>
     </AppBar>
