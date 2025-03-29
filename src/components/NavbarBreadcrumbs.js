@@ -17,16 +17,17 @@ const StyledBreadcrumbs = styled(Breadcrumbs)(({ theme }) => ({
   },
 }));
 
-export default function NavbarBreadcrumbs() {
+export default function NavbarBreadcrumbs({ currentPage = "Home" }) {
+  // Accepts dynamic page name
   return (
     <StyledBreadcrumbs
       aria-label="breadcrumb"
-      separator={<NavigateNextRoundedIcon fontSize="small" />}>
+      separator={<NavigateNextRoundedIcon fontSize="small" sx={{ my: 2 }} />}>
       <Typography variant="body1">Dashboard</Typography>
       <Typography
         variant="body1"
         sx={{ color: "text.primary", fontWeight: 600 }}>
-        Home
+        {currentPage}
       </Typography>
     </StyledBreadcrumbs>
   );
