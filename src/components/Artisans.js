@@ -41,9 +41,10 @@ const Artisans = () => {
   // Filter artisans based on search query
   const filteredArtisans = artisans.filter(
     (artisan) =>
-      artisan.city.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      artisan.state.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      artisan.specialty.toLowerCase().includes(searchQuery.toLowerCase())
+      artisan.status === "approved" && // ✅ Only approved (online) artisans
+      (artisan.city.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        artisan.state.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        artisan.specialty.toLowerCase().includes(searchQuery.toLowerCase()))
   );
 
   const handleCardClick = (artisan) => {

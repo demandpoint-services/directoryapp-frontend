@@ -65,7 +65,7 @@ const createColumns = (setRows) => [
             onClick={() =>
               handleStatusChange(params.row.id, "approved", setRows)
             }>
-            Approve
+            Activate
           </Button>
         )}
         {params.row.status !== "declined" && (
@@ -76,7 +76,7 @@ const createColumns = (setRows) => [
             onClick={() =>
               handleStatusChange(params.row.id, "declined", setRows)
             }>
-            Decline
+            Deactivate
           </Button>
         )}
       </Stack>
@@ -95,7 +95,7 @@ export default function CustomizedDataGrid() {
         );
 
         const formattedData = response.data.map((artisan, index) => ({
-          id: artisan.id || index,
+          id: artisan._id,
           fullName: artisan.fullName,
           status: artisan.status || "pending",
           phone: artisan.phone,
@@ -117,7 +117,6 @@ export default function CustomizedDataGrid() {
 
   return (
     <DataGrid
-      checkboxSelection
       rows={rows}
       columns={createColumns(setRows)}
       pageSizeOptions={[10, 20, 50, 100]}
