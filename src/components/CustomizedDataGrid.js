@@ -120,7 +120,6 @@ export default function CustomizedDataGrid() {
 
   return (
     <DataGrid
-      checkboxSelection
       rows={rows}
       columns={createColumns(setRows)}
       pageSizeOptions={[10, 20, 50, 100]}
