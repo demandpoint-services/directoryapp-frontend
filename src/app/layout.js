@@ -1,7 +1,7 @@
 import { Inter, Roboto_Mono } from "next/font/google";
 import "@fontsource/bebas-neue";
 import "./globals.css";
-import ThemeWrapper from "../components/ThemeWrapper"; // Import ThemeWrapper
+import ClientSessionWrapper from "./ClientSessionWrapper";
 
 const interFont = Inter({
   variable: "--font-inter",
@@ -25,8 +25,8 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={interFont.variable}>
-      <body className={`${interFont.variable} ${robotoMonoFont.variable}`}>
-        <ThemeWrapper>{children}</ThemeWrapper>
+      <body>
+        <ClientSessionWrapper>{children}</ClientSessionWrapper>
       </body>
     </html>
   );

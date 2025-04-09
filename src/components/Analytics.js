@@ -7,9 +7,9 @@ import Copyright from "../internals/components/Copyright";
 import ChartUserByState from "./ChartUserByState";
 import HighlightedCard from "./HighlightedCard";
 import PageViewsBarChart from "./PageViewsBarChart";
-import Header from "./Header";
 import SessionsChart from "./SessionsChart";
 import StatCard from "./StatCard";
+import NavbarBreadcrumbs from "./NavbarBreadcrumbs";
 
 export default function AnalyticsPage() {
   const [totalUsers, setTotalUsers] = useState(null);
@@ -68,13 +68,7 @@ export default function AnalyticsPage() {
 
   return (
     <Box sx={{ width: "100%", maxWidth: { sm: "100%", md: "1700px" } }}>
-      <Header />
-      <Typography
-        component="h2"
-        variant="h6"
-        sx={{ mb: 2, color: "text.primary" }}>
-        Overview
-      </Typography>
+      <NavbarBreadcrumbs currentPage="Analytics" />
       <Grid
         container
         spacing={2}
@@ -95,7 +89,10 @@ export default function AnalyticsPage() {
           <PageViewsBarChart />
         </Grid>
       </Grid>
-      <Typography component="h2" variant="h6" sx={{ mb: 2 }}>
+      <Typography
+        component="h2"
+        variant="h6"
+        sx={{ mb: 2, color: "text.primary" }}>
         Details
       </Typography>
       <ChartUserByState />

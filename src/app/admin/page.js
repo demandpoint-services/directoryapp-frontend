@@ -6,21 +6,22 @@ import { alpha } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
+
 import AppNavbar from "../../components/AppNavbar";
 import MainGrid from "../../components/MainGrid";
 import SideMenu from "../../components/SideMenu";
+import Analytics from "../../components/Analytics";
+import Clients from "../../components/Clients";
+import Tasks from "../../components/Tasks";
 import AppTheme from "../shared-theme/AppTheme";
+// import AuthGuard from "../../components/AuthGuard";
+
 import {
   chartsCustomizations,
   dataGridCustomizations,
   datePickersCustomizations,
   treeViewCustomizations,
 } from "../../theme/customizations";
-
-// Import different page components
-import Analytics from "../../components/Analytics";
-import Clients from "../../components/Clients";
-import Tasks from "../../components/Tasks";
 
 const xThemeComponents = {
   ...chartsCustomizations,
@@ -29,15 +30,13 @@ const xThemeComponents = {
   ...treeViewCustomizations,
 };
 
-export default function Dashboard(props) {
+export default function AdminPage(props) {
   const [selectedPage, setSelectedPage] = useState("Home");
 
-  // Function to update the selected page
   const handleMenuClick = (page) => {
     setSelectedPage(page);
   };
 
-  // Render different content based on selected menu item
   const renderContent = () => {
     switch (selectedPage) {
       case "Analytics":
@@ -52,6 +51,7 @@ export default function Dashboard(props) {
   };
 
   return (
+    // <AuthGuard>
     <AppTheme {...props} themeComponents={xThemeComponents}>
       <CssBaseline enableColorScheme />
       <Box sx={{ display: "flex" }}>
@@ -79,5 +79,6 @@ export default function Dashboard(props) {
         </Box>
       </Box>
     </AppTheme>
+    // </AuthGuard>
   );
 }
