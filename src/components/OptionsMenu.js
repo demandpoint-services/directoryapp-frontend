@@ -18,12 +18,21 @@ const MenuItem = styled(MuiMenuItem)({
 export default function OptionsMenu() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
+
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
+
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  const handleLogout = () => {
+    handleClose(); // Close the menu
+    localStorage.removeItem("admin_token"); // Clear token
+    window.location.href = "/admin-login"; // Redirect manually
+  };
+
   return (
     <React.Fragment>
       <MenuButton
@@ -32,6 +41,7 @@ export default function OptionsMenu() {
         sx={{ borderColor: "transparent" }}>
         <MoreVertRoundedIcon />
       </MenuButton>
+
       <Menu
         anchorEl={anchorEl}
         id="menu"
@@ -58,7 +68,7 @@ export default function OptionsMenu() {
         <MenuItem onClick={handleClose}>Settings</MenuItem>
         <Divider />
         <MenuItem
-          onClick={handleClose}
+          onClick={handleLogout}
           sx={{
             [`& .${listItemIconClasses.root}`]: {
               ml: "auto",

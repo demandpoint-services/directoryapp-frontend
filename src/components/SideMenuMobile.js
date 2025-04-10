@@ -18,6 +18,12 @@ function SideMenuMobile({ open, toggleDrawer, onMenuClick }) {
     toggleDrawer(false)();
   };
 
+  const handleLogout = () => {
+    handleClose(); // Close the menu
+    localStorage.removeItem("admin_token"); // Clear token
+    window.location.href = "/admin-login"; // Redirect manually
+  };
+
   return (
     <Drawer
       anchor="right"
@@ -59,7 +65,11 @@ function SideMenuMobile({ open, toggleDrawer, onMenuClick }) {
           <Button
             variant="outlined"
             fullWidth
-            startIcon={<LogoutRoundedIcon />}>
+            startIcon={<LogoutRoundedIcon />}
+            onClick={() => {
+              localStorage.removeItem("admin_token");
+              window.location.href = "/admin-login";
+            }}>
             Logout
           </Button>
         </Stack>
