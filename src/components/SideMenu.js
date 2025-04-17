@@ -76,7 +76,7 @@ export default function SideMenu({ onMenuClick }) {
         }}>
         <Avatar
           sizes="small"
-          alt="Riley Carter"
+          alt="Riley Carterr"
           src="/static/images/avatar/7.jpg"
           sx={{ width: 36, height: 36 }}
         />
@@ -84,7 +84,7 @@ export default function SideMenu({ onMenuClick }) {
           <Typography
             variant="body2"
             sx={{ fontWeight: 500, lineHeight: "16px" }}>
-            Riley Carter
+            Riley Carterr
           </Typography>
           <Typography variant="caption" sx={{ color: "text.secondary" }}>
             riley@email.com
