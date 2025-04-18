@@ -116,7 +116,7 @@ function NavBar({ mode, toggleColorMode }) {
                 color="primary"
                 variant="contained"
                 size="small"
-                href="/artisanform">
+                href="/selectrole">
                 Register
               </Button>
             </Box>
@@ -187,7 +187,7 @@ function NavBar({ mode, toggleColorMode }) {
               color="primary"
               variant="contained"
               fullWidth
-              href="/artisanform"
+              href="/selectrole"
               onClick={toggleDrawer(false)}>
               Register
             </Button>

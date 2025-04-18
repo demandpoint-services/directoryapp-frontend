@@ -47,10 +47,10 @@ export const ThemeContextProvider = ({ children }) => {
         palette: {
           mode,
           primary: {
-            main: "#6100FF", // Cornflower Blue
+            main: "#6100FF",
           },
           secondary: {
-            main: "#FFA500", // Soft Orange
+            main: "#FFA500",
           },
           background: {
             default: mode === "light" ? "#ffffff" : "#000000",
