@@ -79,10 +79,16 @@ export default function ClientForm() {
         }}>
         <Typography
           variant="h4"
-          align="center"
-          sx={{ fontFamily: '"Bebas Neue", sans-serif' }}>
+          component="h1"
+          sx={{
+            fontFamily: '"Bebas Neue", sans-serif',
+            fontSize: { xs: "2rem", md: "3.75rem" },
+            textAlign: "center",
+            mb: 2,
+          }}>
           Client Registration
         </Typography>
+
         <ProfilePictureUpload
           setProfilePic={setProfilePic}
           profilePic={profilePic}
