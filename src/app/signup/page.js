@@ -60,7 +60,7 @@ const SignUpContainer = styled(Stack)(({ theme }) => ({
     backgroundRepeat: "no-repeat",
     ...theme.applyStyles("dark", {
       backgroundImage:
-        "radial-gradient(at 50% 50%, hsla(0, 0.00%, 0.00%, 0.80), hsl(0, 0.00%, 0.00%))",
+        "radial-gradient(at 50% 50%, hsla(0, 0.00%, 0.00%, 0.80), hsl(0, 100.00%, 50.00%))",
     }),
   },
 }));
@@ -200,20 +200,20 @@ export default function SignUp(props) {
             <Typography sx={{ color: "text.secondary" }}>or</Typography>
           </Divider>
           <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
-            <Button
+            {/* <Button
               fullWidth
               variant="outlined"
               onClick={() => alert("Sign up with Google")}
               startIcon={<GoogleIcon />}>
               Sign up with Google
-            </Button>
-            <Button
+            </Button> */}
+            {/* <Button
               fullWidth
               variant="outlined"
               onClick={() => alert("Sign up with Facebook")}
               startIcon={<FacebookIcon />}>
               Sign up with Facebook
-            </Button>
+            </Button> */}
             <Typography sx={{ textAlign: "center" }}>
               Already have an account?{" "}
               <Link href="/signin" variant="body2" sx={{ alignSelf: "center" }}>

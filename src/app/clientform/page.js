@@ -3,7 +3,6 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { useRouter } from "next/navigation";
 import { Box, Button, Typography, CssBaseline, Divider } from "@mui/material";
 import NavBar from "../../components/navbar";
@@ -13,14 +12,9 @@ import TextInput from "../../components/TextInput";
 import ProfilePictureUpload from "../../components/ProfilePictureUpload";
 import LocationInput from "../../components/LocationInput";
 
-export default function ArtisanForm() {
+export default function ClientForm() {
   const { mode, toggleColorMode } = useTheme();
   const [profilePic, setProfilePic] = useState(null);
-  const [priceRange, setPriceRange] = useState({
-    minPrice: "",
-    maxPrice: "",
-  });
-
   const router = useRouter();
 
   const CLOUDINARY_URL = process.env.NEXT_PUBLIC_CLOUDINARY_URL;
@@ -29,7 +23,6 @@ export default function ArtisanForm() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-
     let profilePicUrl = "";
 
     if (profilePic) {
@@ -38,55 +31,31 @@ export default function ArtisanForm() {
       formData.append("upload_preset", UPLOAD_PRESET);
 
       try {
-        const cloudinaryRes = await axios.post(CLOUDINARY_URL, formData, {
-          headers: { "Content-Type": "multipart/form-data" },
-        });
-        profilePicUrl = cloudinaryRes.data.secure_url;
+        const res = await axios.post(CLOUDINARY_URL, formData);
+        profilePicUrl = res.data.secure_url;
       } catch (error) {
-        console.error(
-          "Image upload failed:",
-          error.response?.data || error.message
-        );
         toast.error("Image upload failed. Please try again.");
         return;
       }
     }
 
-    const artisanData = {
+    const clientData = {
       fullName: data.get("fullName"),
-      profilePicture: profilePicUrl,
       phone: data.get("phone"),
       email: data.get("email"),
       city: data.get("city"),
       state: data.get("state"),
-      specialty: data.get("specialty"),
-      experience: Number(data.get("experience")),
+      profilePicture: profilePicUrl,
     };
 
     try {
-      const response = await axios.post(
-        `${process.env.API_BASE_URL}/artisans/register`,
-        artisanData,
-        { headers: { "Content-Type": "application/json" } }
+      await axios.post(
+        `${process.env.NEXT_PUBLIC_API_BASE_URL}/clients/register`,
+        clientData
       );
-
-      console.log("Response:", response.data);
-
-      // ✅ Show toast notification
-      toast.success("Registration Successful! Redirecting...", {
-        position: "top-right",
-        autoClose: 3000,
-        hideProgressBar: false,
-      });
-
-      setTimeout(() => {
-        router.push("/");
-      }, 2000);
+      toast.success("Registration Successful! Redirecting...");
+      setTimeout(() => router.push("/"), 2000);
     } catch (error) {
-      console.error(
-        "Error submitting form:",
-        error.response?.data || error.message
-      );
       toast.error("Registration failed. Please try again.");
     }
   };
@@ -94,13 +63,11 @@ export default function ArtisanForm() {
   return (
     <>
       <CssBaseline />
-      <ToastContainer />{" "}
-      {/* ✅ Add ToastContainer to ensure notifications show up */}
+      <ToastContainer />
       <NavBar mode={mode} toggleColorMode={toggleColorMode} />
       <Box
         component="form"
         onSubmit={handleSubmit}
-        encType="multipart/form-data"
         sx={{
           display: "flex",
           flexDirection: "column",
@@ -112,16 +79,10 @@ export default function ArtisanForm() {
         }}>
         <Typography
           variant="h4"
-          component="h1"
-          sx={{
-            fontFamily: '"Bebas Neue", sans-serif',
-            fontSize: { xs: "2rem", md: "3.75rem" },
-            textAlign: "center",
-            mb: 2,
-          }}>
-          Artisan Registration
+          align="center"
+          sx={{ fontFamily: '"Bebas Neue", sans-serif' }}>
+          Client Registration
         </Typography>
-
         <ProfilePictureUpload
           setProfilePic={setProfilePic}
           profilePic={profilePic}
@@ -130,20 +91,8 @@ export default function ArtisanForm() {
         <TextInput label="Phone Number" name="phone" required />
         <TextInput label="Email Address" name="email" type="email" required />
         <LocationInput />
-        <TextInput label="Trade/Specialty" name="specialty" required />
-        <TextInput
-          label="Years of Experience"
-          name="experience"
-          type="number"
-          required
-        />
-
-        <Button
-          type="submit"
-          variant="contained"
-          fullWidth
-          sx={{ mt: 3, py: 1.5 }}>
-          Join waitlist
+        <Button type="submit" fullWidth variant="contained" sx={{ mt: 3 }}>
+          Join as Client
         </Button>
       </Box>
       <Divider sx={{ my: 4 }} />
