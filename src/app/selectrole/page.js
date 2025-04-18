@@ -121,11 +121,11 @@ export default function SelectRole() {
                 fontWeight: "bold",
                 borderColor: "#fff",
                 color: "#fff",
+                transition: "all 0.3s ease-in-out",
                 "&:hover": {
                   background: "linear-gradient(135deg, navy, #8A2BE2)",
                   color: "#fff",
-                  borderColor: "none",
-                  border: 0,
+                  borderColor: "transparent",
                 },
               }}
               onClick={() => router.push("/clientform")}>
