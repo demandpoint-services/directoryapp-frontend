@@ -5,9 +5,9 @@ import {
   Box,
   Typography,
   Grid,
-  Button,
   Stack,
   TextField,
+  CircularProgress,
 } from "@mui/material";
 import ArtisansCard from "./ArtisansCard";
 import ArtisanDetails from "./ArtisanDetails";
@@ -16,6 +16,7 @@ const Artisans = () => {
   const [artisans, setArtisans] = useState([]);
   const [selectedArtisan, setSelectedArtisan] = useState(null);
   const [searchQuery, setSearchQuery] = useState("");
+  const [loading, setLoading] = useState(true); // 🔥 Add loading state
 
   // Fetch artisans from backend
   useEffect(() => {
@@ -27,6 +28,8 @@ const Artisans = () => {
         setArtisans(response.data);
       } catch (error) {
         console.error("Error fetching artisans:", error);
+      } finally {
+        setLoading(false); // ✅ Done loading
       }
     };
 
@@ -41,7 +44,7 @@ const Artisans = () => {
   // Filter artisans based on search query
   const filteredArtisans = artisans.filter(
     (artisan) =>
-      artisan.status === "approved" && // ✅ Only approved (online) artisans
+      artisan.status === "approved" &&
       (artisan.city.toLowerCase().includes(searchQuery.toLowerCase()) ||
         artisan.state.toLowerCase().includes(searchQuery.toLowerCase()) ||
         artisan.specialty.toLowerCase().includes(searchQuery.toLowerCase()))
@@ -92,22 +95,37 @@ const Artisans = () => {
       </Stack>
 
       <Box>
-        <Grid container spacing={2}>
-          {filteredArtisans.length > 0 ? (
-            filteredArtisans.map((artisan, index) => (
-              <Grid item xs={12} sm={6} lg={4} key={index}>
-                <ArtisansCard
-                  artisan={artisan}
-                  onClick={() => handleCardClick(artisan)}
-                />
-              </Grid>
-            ))
-          ) : (
-            <Typography variant="h6" color="text.secondary" sx={{ mt: 2 }}>
-              No artisans found.
-            </Typography>
-          )}
-        </Grid>
+        {loading ? (
+          <Box
+            sx={{
+              mt: 5,
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}>
+            <CircularProgress />
+          </Box>
+        ) : (
+          <Grid container spacing={2}>
+            {filteredArtisans.length > 0 ? (
+              filteredArtisans.map((artisan, index) => (
+                <Grid item xs={12} sm={6} lg={4} key={index}>
+                  <ArtisansCard
+                    artisan={artisan}
+                    onClick={() => handleCardClick(artisan)}
+                  />
+                </Grid>
+              ))
+            ) : (
+              <Typography
+                variant="h6"
+                color="text.secondary"
+                sx={{ mt: 2, textAlign: "center", width: "100%" }}>
+                No artisans found.
+              </Typography>
+            )}
+          </Grid>
+        )}
       </Box>
 
       {selectedArtisan && (
