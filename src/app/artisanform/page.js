@@ -12,6 +12,7 @@ import { useTheme } from "../../context/ThemeContext";
 import TextInput from "../../components/TextInput";
 import ProfilePictureUpload from "../../components/ProfilePictureUpload";
 import LocationInput from "../../components/LocationInput";
+import SpecialtySelect from "../../components/SpecialtySelect";
 
 export default function ArtisanForm() {
   const { mode, toggleColorMode } = useTheme();
@@ -59,7 +60,10 @@ export default function ArtisanForm() {
       email: data.get("email"),
       city: data.get("city"),
       state: data.get("state"),
-      specialty: data.get("specialty"),
+      specialty:
+        data.get("specialty") === "Others"
+          ? data.get("customSpecialty")
+          : data.get("specialty"),
       experience: Number(data.get("experience")),
     };
 
@@ -130,7 +134,7 @@ export default function ArtisanForm() {
         <TextInput label="Phone Number" name="phone" required />
         <TextInput label="Email Address" name="email" type="email" required />
         <LocationInput />
-        <TextInput label="Trade/Specialty" name="specialty" required />
+        <SpecialtySelect />
         <TextInput
           label="Years of Experience"
           name="experience"
