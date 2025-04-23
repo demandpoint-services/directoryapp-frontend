@@ -98,7 +98,7 @@ export default function Hero() {
             color="primary"
             size="medium"
             sx={{ minWidth: "fit-content" }}
-            href="/artisanform">
+            href="/selectrole">
             Join Now
           </Button>
           <Typography
