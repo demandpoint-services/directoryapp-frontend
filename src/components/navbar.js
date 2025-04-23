@@ -157,7 +157,7 @@ function NavBar({ mode, toggleColorMode }) {
               theme.palette.mode === "light"
                 ? "rgba(255, 255, 255, 0.9)" // Light mode background
                 : "rgba(0, 0, 0, 0.9)", // Dark mode background
-            height: "50vh",
+            height: "60vh",
             p: 2,
           }}>
           <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
