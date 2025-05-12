@@ -11,6 +11,7 @@ import { useTheme } from "../../context/ThemeContext";
 import TextInput from "../../components/TextInput";
 import ProfilePictureUpload from "../../components/ProfilePictureUpload";
 import LocationInput from "../../components/LocationInput";
+import { isValidEmail, isValidPhone, isValidNIN } from "../../utils/validation";
 
 export default function ClientForm() {
   const { mode, toggleColorMode } = useTheme();
@@ -23,6 +24,43 @@ export default function ClientForm() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
+
+    const email = data.get("email");
+    const phone = data.get("phone");
+    const nin = data.get("nin");
+
+    // ✅ Frontend Validations
+    if (!isValidNIN(nin)) {
+      toast.error("NIN must be 11 digits.");
+      return;
+    }
+
+    if (!isValidEmail(email)) {
+      toast.error("Invalid email format.");
+      return;
+    }
+
+    if (!isValidPhone(phone)) {
+      toast.error("Phone number must be between 10 and 14 digits.");
+      return;
+    }
+
+    // ✅ Check for duplicates via API before submission
+    try {
+      const duplicateCheck = await axios.post(
+        `${process.env.NEXT_PUBLIC_API_BASE_URL}/artisans/check-duplicate`,
+        { email, phone, nin }
+      );
+
+      if (duplicateCheck.data.exists) {
+        toast.error(duplicateCheck.data.message);
+        return;
+      }
+    } catch (error) {
+      toast.error("Error validating user details. Try again.");
+      return;
+    }
+
     let profilePicUrl = "";
 
     if (profilePic) {
@@ -46,6 +84,7 @@ export default function ClientForm() {
       city: data.get("city"),
       state: data.get("state"),
       profilePicture: profilePicUrl,
+      nin: data.get("nin"),
     };
 
     try {
@@ -97,6 +136,11 @@ export default function ClientForm() {
         <TextInput label="Phone Number" name="phone" required />
         <TextInput label="Email Address" name="email" type="email" required />
         <LocationInput />
+        <TextInput
+          label="National Identification Number (NIN)"
+          name="nin"
+          required
+        />
         <Button type="submit" fullWidth variant="contained" sx={{ mt: 3 }}>
           Join as Client
         </Button>

@@ -13,6 +13,7 @@ import TextInput from "../../components/TextInput";
 import ProfilePictureUpload from "../../components/ProfilePictureUpload";
 import LocationInput from "../../components/LocationInput";
 import SpecialtySelect from "../../components/SpecialtySelect";
+import { isValidEmail, isValidPhone, isValidNIN } from "../../utils/validation";
 
 export default function ArtisanForm() {
   const { mode, toggleColorMode } = useTheme();
@@ -30,6 +31,41 @@ export default function ArtisanForm() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
+
+    const email = data.get("email");
+    const phone = data.get("phone");
+    const nin = data.get("nin");
+
+    // ✅ Frontend Validations
+    if (!isValidNIN(nin)) {
+      toast.error("NIN must be 11 digits.");
+      return;
+    }
+
+    if (!isValidEmail(email)) {
+      toast.error("Invalid email format.");
+      return;
+    }
+
+    if (!isValidPhone(phone)) {
+      toast.error("Phone number must be between 10 and 14 digits.");
+      return;
+    }
+    // ✅ Check for duplicates via API before submission
+    try {
+      const duplicateCheck = await axios.post(
+        `${process.env.NEXT_PUBLIC_API_BASE_URL}/artisans/check-duplicate`,
+        { email, phone, nin }
+      );
+
+      if (duplicateCheck.data.exists) {
+        toast.error(duplicateCheck.data.message);
+        return;
+      }
+    } catch (error) {
+      toast.error("Error validating user details. Try again.");
+      return;
+    }
 
     let profilePicUrl = "";
 
@@ -65,6 +101,7 @@ export default function ArtisanForm() {
           ? data.get("customSpecialty")
           : data.get("specialty"),
       experience: Number(data.get("experience")),
+      nin: data.get("nin"),
     };
 
     try {
@@ -134,6 +171,11 @@ export default function ArtisanForm() {
         <TextInput label="Phone Number" name="phone" required />
         <TextInput label="Email Address" name="email" type="email" required />
         <LocationInput />
+        <TextInput
+          label="National Identification Number (NIN)"
+          name="nin"
+          required
+        />
         <SpecialtySelect />
         <TextInput
           label="Years of Experience"
