@@ -8,7 +8,6 @@ import Image from "next/image";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import MenuContent from "./MenuContent";
-import CardAlert from "./CardAlert";
 import OptionsMenu from "./OptionsMenu";
 
 const drawerWidth = 240;

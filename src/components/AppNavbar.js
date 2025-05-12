@@ -60,10 +60,14 @@ export default function AppNavbar({ onMenuClick }) {
             sx={{ justifyContent: "center", mr: "auto" }}>
             <CustomIcon />
             <Typography
-              variant="h5"
+              variant="h4"
               component="h3"
-              sx={{ color: "text.primary" }}>
-              Admin Panel
+              sx={{
+                color: "text.primary.main",
+                fontFamily: '"Bebas Neue", sans-serif',
+                fontWeight: "regular",
+              }}>
+              Demand Point
             </Typography>
           </Stack>
           <ColorModeIconDropdown />
