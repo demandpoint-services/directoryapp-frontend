@@ -60,7 +60,7 @@ const SignUpContainer = styled(Stack)(({ theme }) => ({
     backgroundRepeat: "no-repeat",
     ...theme.applyStyles("dark", {
       backgroundImage:
-        "radial-gradient(at 50% 50%, hsla(0, 0.00%, 0.00%, 0.80), hsl(0, 100.00%, 50.00%))",
+        "radial-gradient(at 50% 50%, hsla(0, 0.00%, 0.00%, 0.80), hsl(0, 0.00%, 0.00%))",
     }),
   },
 }));
