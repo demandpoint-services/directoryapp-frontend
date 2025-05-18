@@ -20,6 +20,7 @@ import { useTheme } from "@mui/material/styles";
 import Image from "next/image";
 import Link from "next/link";
 import ToggleColorMode from "./ToggleColorMode";
+import { useUser } from "@/hooks/useUser";
 
 const logoStyle = {
   width: "10rem",
@@ -33,6 +34,7 @@ const pages = ["About Us", "How it Works", "Contact Us", "FAQ"];
 function NavBar({ mode, toggleColorMode }) {
   const [open, setOpen] = React.useState(false);
   const theme = useTheme();
+  const { user } = useUser();
 
   const toggleDrawer = (newOpen) => () => {
     setOpen(newOpen);
@@ -102,16 +104,27 @@ function NavBar({ mode, toggleColorMode }) {
                 alignItems: "center",
               }}>
               <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} />
-              <Link href="/signin" passHref>
-                <Button variant="text" size="small" component="a">
-                  Sign in
-                </Button>
-              </Link>
-              <Link href="/signup" passHref>
-                <Button variant="contained" size="small" component="a">
-                  Sign up
-                </Button>
-              </Link>
+
+              {user ? (
+                <Link href="/dashboard" passHref>
+                  <Button variant="contained" size="small" component="a">
+                    Dashboard
+                  </Button>
+                </Link>
+              ) : (
+                <>
+                  <Link href="/signin" passHref>
+                    <Button variant="text" size="small" component="a">
+                      Sign in
+                    </Button>
+                  </Link>
+                  <Link href="/signup" passHref>
+                    <Button variant="contained" size="small" component="a">
+                      Sign up
+                    </Button>
+                  </Link>
+                </>
+              )}
             </Box>
 
             <Box
@@ -168,28 +181,44 @@ function NavBar({ mode, toggleColorMode }) {
             ))}
           </Box>
           <Divider sx={{ my: 3, borderColor: theme.palette.divider }} />
-          <MenuItem>
-            <Link href="/signin" passHref>
-              <Button
-                variant="outlined"
-                fullWidth
-                component="a"
-                onClick={toggleDrawer(false)}>
-                Sign in
-              </Button>
-            </Link>
-          </MenuItem>
-          <MenuItem>
-            <Link href="/signup" passHref>
-              <Button
-                variant="contained"
-                fullWidth
-                component="a"
-                onClick={toggleDrawer(false)}>
-                Sign up
-              </Button>
-            </Link>
-          </MenuItem>
+          {user ? (
+            <MenuItem>
+              <Link href="/dashboard" passHref>
+                <Button
+                  variant="contained"
+                  fullWidth
+                  component="a"
+                  onClick={toggleDrawer(false)}>
+                  Dashboard
+                </Button>
+              </Link>
+            </MenuItem>
+          ) : (
+            <>
+              <MenuItem>
+                <Link href="/signin" passHref>
+                  <Button
+                    variant="outlined"
+                    fullWidth
+                    component="a"
+                    onClick={toggleDrawer(false)}>
+                    Sign in
+                  </Button>
+                </Link>
+              </MenuItem>
+              <MenuItem>
+                <Link href="/signup" passHref>
+                  <Button
+                    variant="contained"
+                    fullWidth
+                    component="a"
+                    onClick={toggleDrawer(false)}>
+                    Sign up
+                  </Button>
+                </Link>
+              </MenuItem>
+            </>
+          )}
         </Box>
       </Drawer>
     </div>
