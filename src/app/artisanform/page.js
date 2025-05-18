@@ -52,20 +52,20 @@ export default function ArtisanForm() {
       return;
     }
     // ✅ Check for duplicates via API before submission
-    try {
-      const duplicateCheck = await axios.post(
-        `${process.env.NEXT_PUBLIC_API_BASE_URL}/artisans/check-duplicate`,
-        { email, phone, nin }
-      );
+    // try {
+    //   const duplicateCheck = await axios.post(
+    //     `${process.env.NEXT_PUBLIC_API_BASE_URL}/artisans/check-duplicate`,
+    //     { email, phone, nin }
+    //   );
 
-      if (duplicateCheck.data.exists) {
-        toast.error(duplicateCheck.data.message);
-        return;
-      }
-    } catch (error) {
-      toast.error("Error validating user details. Try again.");
-      return;
-    }
+    //   if (duplicateCheck.data.exists) {
+    //     toast.error(duplicateCheck.data.message);
+    //     return;
+    //   }
+    // } catch (error) {
+    //   toast.error("Error validating user details. Try again.");
+    //   return;
+    // }
 
     let profilePicUrl = "";
 
