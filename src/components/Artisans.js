@@ -61,8 +61,9 @@ const Artisans = () => {
   return (
     <Container
       sx={{
-        pt: { xs: 14, sm: 16 },
-        pb: { xs: 8, sm: 16 },
+        pt: { xs: 2, sm: 2 },
+        pb: { xs: 2, sm: 2 },
+        px: 0,
         position: "relative",
         display: "flex",
         flexDirection: "column",
@@ -70,12 +71,16 @@ const Artisans = () => {
         gap: { xs: 3 },
       }}>
       <Typography
-        component="h2"
+        component="h4"
         variant="h4"
         color="text.primary"
+        display={{ xs: "block", sm: "flex" }}
         sx={{
-          width: { sm: "100%", md: "60%" },
-          textAlign: { xs: "left", sm: "center" },
+          color: "text.primary.main",
+          width: "50%",
+          fontFamily: '"Bebas Neue", sans-serif',
+          fontWeight: "regular",
+          textAlign: "center",
         }}>
         Find Skilled Professionals for Every Need
       </Typography>

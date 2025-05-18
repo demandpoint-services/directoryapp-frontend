@@ -7,6 +7,8 @@ import {
   TextField,
   Box,
   Typography,
+  Divider,
+  Stack,
 } from "@mui/material";
 
 const ArtisanDetails = ({
@@ -21,48 +23,68 @@ const ArtisanDetails = ({
   return (
     <>
       <Dialog open={openDetails} onClose={onClose} fullWidth maxWidth="sm">
-        <DialogTitle>{artisan.name}</DialogTitle>
+        <DialogTitle sx={{ fontWeight: "bold", textAlign: "center" }}>
+          {artisan.name}
+        </DialogTitle>
+
         <DialogContent dividers>
-          <Box display="flex" flexDirection="column" alignItems="center">
+          <Stack spacing={2} alignItems="center" sx={{ mb: 2 }}>
             <Typography variant="h6">{artisan.fullName}</Typography>
-            <Typography variant="body1">{artisan.specialty}</Typography>
-            <Typography variant="body1">
-              <b>{artisan.experience}</b> years of experience
+            <Typography variant="subtitle1" color="text.secondary">
+              {artisan.specialty}
             </Typography>
-            <TextField
-              fullWidth
-              label="Description of Work"
-              value={requestDescription}
-              onChange={(e) => setRequestDescription(e.target.value)}
-              multiline
-              rows={4}
-              margin="normal"
-            />
-          </Box>
+            <Typography variant="body2" color="text.secondary">
+              <strong>{artisan.experience}</strong> years of experience
+            </Typography>
+          </Stack>
+
+          <Divider sx={{ mb: 2 }} />
+
+          <Typography variant="subtitle2" gutterBottom sx={{ fontWeight: 500 }}>
+            Describe the Work:
+          </Typography>
+
+          <TextField
+            fullWidth
+            value={requestDescription}
+            onChange={(e) => setRequestDescription(e.target.value)}
+            multiline
+            rows={5}
+            placeholder="Enter the job details you want the artisan to perform..."
+            variant="outlined"
+          />
         </DialogContent>
-        <DialogActions>
-          <Button onClick={onClose}>Cancel</Button>
-          <Button onClick={onRequest} variant="contained" color="primary">
-            Request
+
+        <DialogActions sx={{ px: 3, pb: 2 }}>
+          <Button onClick={onClose} color="inherit">
+            Cancel
+          </Button>
+          <Button
+            onClick={onRequest}
+            variant="contained"
+            color="primary"
+            disableElevation>
+            Send Request
           </Button>
         </DialogActions>
       </Dialog>
 
       {/* Confirmation Dialog */}
       {confirmationOpen && (
-        <Dialog open={confirmationOpen} onClose={() => {}}>
-          <DialogTitle>Request Sent</DialogTitle>
+        <Dialog
+          open={confirmationOpen}
+          onClose={onClose}
+          maxWidth="xs"
+          fullWidth>
+          <DialogTitle textAlign="center">Request Sent</DialogTitle>
           <DialogContent>
-            <Typography>
-              Your request has been sent to {artisan.name}. They will get back
-              to you soon!
+            <Typography textAlign="center" variant="body1" sx={{ my: 2 }}>
+              Your request has been sent to <strong>{artisan.name}</strong>.
+              They will get back to you soon!
             </Typography>
           </DialogContent>
-          <DialogActions>
-            <Button
-              onClick={() => onClose()}
-              variant="contained"
-              color="primary">
+          <DialogActions sx={{ justifyContent: "center", pb: 2 }}>
+            <Button onClick={onClose} variant="contained" color="primary">
               Close
             </Button>
           </DialogActions>

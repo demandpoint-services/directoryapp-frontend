@@ -42,7 +42,13 @@ const ArtisansCard = ({ artisan }) => {
           onClick={handleOpen}>
           <CardMedia
             component="img"
-            sx={{ width: 140, height: 200, flex: "40%", objectfit: "cover" }}
+            sx={{
+              width: 140,
+              height: 200,
+              flex: "40%",
+              objectfit: "cover",
+              paddingRight: "20px",
+            }}
             image={artisan.profilePicture}
             alt={artisan.name}
             loading="lazy"
