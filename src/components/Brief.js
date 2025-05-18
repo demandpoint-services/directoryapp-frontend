@@ -95,11 +95,12 @@ export default function DemandPointBrief() {
                   textAlign: "justify",
                   fontSize: "1rem",
                 }}>
-                Demand Point is a comprehensive platform designed to connect
-                clients with skilled artisans in a seamless and secure way. The
-                platform offers customizable user profiles for both artisans and
-                clients, enabling artisans to showcase their skills, experience,
-                and portfolio, while clients can outline their project needs and
+                Demand Point is a jointly-owned partnership venture and a
+                comprehensive platform designed to connect clients with skilled
+                artisans in a seamless and secure way. The platform offers
+                customizable user profiles for both artisans and clients,
+                enabling artisans to showcase their skills, experience, and
+                portfolio, while clients can outline their project needs and
                 preferences. With a powerful search and matching system, clients
                 can easily find artisans based on skill sets, location, ratings,
                 and availability, while intelligent recommendations further
