@@ -28,6 +28,8 @@ const logoStyle = {
   paddingTop: ".4rem",
 };
 
+const pages = ["About Us", "How it Works", "Contact Us", "FAQ"];
+
 function NavBar({ mode, toggleColorMode }) {
   const [open, setOpen] = React.useState(false);
   const theme = useTheme();
@@ -67,15 +69,8 @@ function NavBar({ mode, toggleColorMode }) {
                   ? `0 0 1px rgba(85, 166, 246, 0.1), 1px 1.5px 2px -1px rgba(85, 166, 246, 0.15), 4px 4px 12px -2.5px rgba(85, 166, 246, 0.15)`
                   : "0 0 1px rgba(2, 31, 59, 0.7), 1px 1.5px 2px -1px rgba(2, 31, 59, 0.65), 4px 4px 12px -2.5px rgba(2, 31, 59, 0.65)",
             }}>
-            <Box
-              sx={{
-                flexGrow: 1,
-                display: "flex",
-                alignItems: "center",
-                ml: "20px",
-                px: 0,
-              }}>
-              <Link href="/">
+            <Box sx={{ flexGrow: 1, display: "flex", alignItems: "center" }}>
+              <Link href="/" passHref>
                 <Image
                   src="/demandpoint.png"
                   alt="Demand Point logo"
@@ -84,19 +79,13 @@ function NavBar({ mode, toggleColorMode }) {
                   style={logoStyle}
                 />
               </Link>
-              <Box sx={{ display: { xs: "none", md: "flex" }, ml: "20px" }}>
-                {[
-                  "Artisans",
-                  "About Us",
-                  "How it Works",
-                  "Contact Us",
-                  "FAQ",
-                ].map((item) => (
+              <Box sx={{ display: { xs: "none", md: "flex" }, ml: 3 }}>
+                {pages.map((item) => (
                   <Link
                     key={item}
                     href={`/${item.toLowerCase().replace(/\s/g, "")}`}
                     passHref>
-                    <MenuItem sx={{ py: "6px", px: "12px" }}>
+                    <MenuItem component="a" sx={{ py: "6px", px: "12px" }}>
                       <Typography variant="body2" color="text.primary">
                         {item}
                       </Typography>
@@ -105,6 +94,7 @@ function NavBar({ mode, toggleColorMode }) {
                 ))}
               </Box>
             </Box>
+
             <Box
               sx={{
                 display: { xs: "none", md: "flex" },
@@ -112,14 +102,18 @@ function NavBar({ mode, toggleColorMode }) {
                 alignItems: "center",
               }}>
               <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} />
-              <Button
-                color="primary"
-                variant="contained"
-                size="small"
-                href="/selectrole">
-                Register
-              </Button>
+              <Link href="/signin" passHref>
+                <Button variant="text" size="small" component="a">
+                  Sign in
+                </Button>
+              </Link>
+              <Link href="/signup" passHref>
+                <Button variant="contained" size="small" component="a">
+                  Sign up
+                </Button>
+              </Link>
             </Box>
+
             <Box
               sx={{
                 display: { xs: "flex", md: "none" },
@@ -133,6 +127,7 @@ function NavBar({ mode, toggleColorMode }) {
           </Toolbar>
         </Container>
       </AppBar>
+
       <Drawer
         anchor="top"
         open={open}
@@ -151,46 +146,49 @@ function NavBar({ mode, toggleColorMode }) {
                 : `0 0 1px rgba(2, 31, 59, 0.7), 1px 1.5px 2px -1px rgba(2, 31, 59, 0.65), 4px 4px 12px -2.5px rgba(2, 31, 59, 0.65)`,
           },
         }}>
-        <Box
-          sx={{
-            backgroundColor:
-              theme.palette.mode === "light"
-                ? "rgba(255, 255, 255, 0.9)" // Light mode background
-                : "rgba(0, 0, 0, 0.9)", // Dark mode background
-            height: "60vh",
-            p: 2,
-          }}>
+        <Box sx={{ height: "60vh", p: 2 }}>
           <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
             <IconButton onClick={toggleDrawer(false)}>
               <CloseRoundedIcon sx={{ color: theme.palette.text.primary }} />
             </IconButton>
           </Box>
           <Box>
-            {["Artisans", "About Us", "How it Works", "Contact Us", "FAQ"].map(
-              (item) => (
-                <Link
-                  key={item}
-                  href={`/${item.toLowerCase().replace(/\s/g, "")}`}
-                  passHref>
-                  <MenuItem
-                    onClick={toggleDrawer(false)}
-                    sx={{ color: theme.palette.text.primary }}>
-                    {item}
-                  </MenuItem>
-                </Link>
-              )
-            )}
+            {pages.map((item) => (
+              <Link
+                key={item}
+                href={`/${item.toLowerCase().replace(/\s/g, "")}`}
+                passHref>
+                <MenuItem
+                  component="a"
+                  onClick={toggleDrawer(false)}
+                  sx={{ color: theme.palette.text.primary }}>
+                  {item}
+                </MenuItem>
+              </Link>
+            ))}
           </Box>
           <Divider sx={{ my: 3, borderColor: theme.palette.divider }} />
           <MenuItem>
-            <Button
-              color="primary"
-              variant="contained"
-              fullWidth
-              href="/selectrole"
-              onClick={toggleDrawer(false)}>
-              Register
-            </Button>
+            <Link href="/signin" passHref>
+              <Button
+                variant="outlined"
+                fullWidth
+                component="a"
+                onClick={toggleDrawer(false)}>
+                Sign in
+              </Button>
+            </Link>
+          </MenuItem>
+          <MenuItem>
+            <Link href="/signup" passHref>
+              <Button
+                variant="contained"
+                fullWidth
+                component="a"
+                onClick={toggleDrawer(false)}>
+                Sign up
+              </Button>
+            </Link>
           </MenuItem>
         </Box>
       </Drawer>
