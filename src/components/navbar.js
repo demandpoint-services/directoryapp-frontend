@@ -182,41 +182,36 @@ function NavBar({ mode, toggleColorMode }) {
           </Box>
           <Divider sx={{ my: 3, borderColor: theme.palette.divider }} />
           {user ? (
-            <MenuItem>
-              <Link href="/dashboard" passHref>
+            <Link href="/dashboard" passHref>
+              <Button
+                variant="contained"
+                fullWidth
+                component="a"
+                onClick={toggleDrawer(false)}>
+                Dashboard
+              </Button>
+            </Link>
+          ) : (
+            <>
+              <Link href="/signin" passHref>
+                <Button
+                  variant="outlined"
+                  fullWidth
+                  component="a"
+                  onClick={toggleDrawer(false)}
+                  sx={{ marginBottom: ".5rem" }}>
+                  Sign in
+                </Button>
+              </Link>
+              <Link href="/signup" passHref>
                 <Button
                   variant="contained"
                   fullWidth
                   component="a"
                   onClick={toggleDrawer(false)}>
-                  Dashboard
+                  Sign up
                 </Button>
               </Link>
-            </MenuItem>
-          ) : (
-            <>
-              <MenuItem>
-                <Link href="/signin" passHref>
-                  <Button
-                    variant="outlined"
-                    fullWidth
-                    component="a"
-                    onClick={toggleDrawer(false)}>
-                    Sign in
-                  </Button>
-                </Link>
-              </MenuItem>
-              <MenuItem>
-                <Link href="/signup" passHref>
-                  <Button
-                    variant="contained"
-                    fullWidth
-                    component="a"
-                    onClick={toggleDrawer(false)}>
-                    Sign up
-                  </Button>
-                </Link>
-              </MenuItem>
             </>
           )}
         </Box>
