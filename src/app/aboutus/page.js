@@ -11,6 +11,7 @@ import Footer from "@/components/Footer";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import TrendingUpIcon from "@mui/icons-material/TrendingUp";
 import Highlights from "@/components/Highlights";
+import Team from "@/components/Team";
 
 export default function AboutPage() {
   const { mode, toggleColorMode } = useTheme();
@@ -117,27 +118,29 @@ export default function AboutPage() {
                     textAlign: "justify",
                     fontSize: "1rem",
                   }}>
-                  Demand Point is a comprehensive platform designed to
-                  seamlessly and securely connect clients with skilled artisans.
-                  The platform offers customisable user profiles for artisans
-                  and clients, allowing artisans to showcase their skills,
-                  experience, and portfolio, while clients can specify their
-                  project needs and preferences. With a robust search and
+                  Demand Point is a jointly-owned partnership venture and a
+                  comprehensive platform designed to connect clients with
+                  skilled artisans in a seamless and secure way. The platform
+                  offers customizable user profiles for both artisans and
+                  clients, enabling artisans to showcase their skills,
+                  experience, and portfolio, while clients can outline their
+                  project needs and preferences. With a powerful search and
                   matching system, clients can easily find artisans based on
                   skill sets, location, ratings, and availability, while
                   intelligent recommendations further enhance the user
                   experience. Key features include real-time booking and
                   notifications, secure payment integration, in-app
                   communication tools, and a verification process to build
-                  trust. Artisans can display verified badges to demonstrate
-                  their expertise, and both artisans and clients can rate and
-                  review one another to promote a professional environment.
+                  trust.
                 </Typography>
               </Box>
             </Grid>
           </Grid>
         </Box>
       </Container>
+
+      {/* Team Section */}
+      <Team />
 
       {/* Values Section */}
       <Box
