@@ -33,7 +33,7 @@ export default function UserAuthGuard({ children }) {
         }
       } catch (err) {
         setIsAuthenticated(false);
-        router.replace("/signin");
+        router.replace("/login");
       } finally {
         setCheckingAuth(false);
       }

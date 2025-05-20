@@ -42,7 +42,7 @@ const Card = styled(MuiCard)(({ theme }) => ({
   }),
 }));
 
-const SignInContainer = styled(Stack)(({ theme }) => ({
+const LogInContainer = styled(Stack)(({ theme }) => ({
   height: "calc((1 - var(--template-frame-height, 0)) * 100dvh)",
   minHeight: "100%",
   padding: theme.spacing(2),
@@ -65,7 +65,7 @@ const SignInContainer = styled(Stack)(({ theme }) => ({
   },
 }));
 
-export default function UserSignInPage(props) {
+export default function UserLogInPage(props) {
   const router = useRouter();
   const [form, setForm] = useState({
     email: "",
@@ -104,9 +104,9 @@ export default function UserSignInPage(props) {
         }, 2000);
       }
     } catch (error) {
-      console.error("Signin Error:", error.response?.data || error.message);
+      console.error("Login Error:", error.response?.data || error.message);
       toast.error(
-        error.response?.data?.message || "Signin failed. Please try again."
+        error.response?.data?.message || "Login failed. Please try again."
       );
     }
 
@@ -117,7 +117,7 @@ export default function UserSignInPage(props) {
     <AppTheme {...props}>
       <CssBaseline enableColorScheme />
       <ToastContainer />
-      <SignInContainer direction="column" justifyContent="center">
+      <LogInContainer direction="column" justifyContent="center">
         <Card variant="outlined">
           <Typography
             component="h1"
@@ -176,7 +176,7 @@ export default function UserSignInPage(props) {
               fullWidth
               variant="contained"
               disabled={loading}>
-              {loading ? "Signing in..." : "Sign in"}
+              {loading ? "Logging in..." : "Log in"}
             </Button>
 
             {formError && <Alert severity="error">{formError}</Alert>}
@@ -193,7 +193,7 @@ export default function UserSignInPage(props) {
             </Link>
           </Typography>
         </Card>
-      </SignInContainer>
+      </LogInContainer>
     </AppTheme>
   );
 }

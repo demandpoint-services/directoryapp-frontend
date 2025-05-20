@@ -100,7 +100,7 @@ export default function UserSignupPage(props) {
         localStorage.setItem("user_token", response.data.token);
 
         setTimeout(() => {
-          router.push("/selectrole");
+          router.push("/login");
         }, 2000);
       }
     } catch (error) {
@@ -188,7 +188,7 @@ export default function UserSignupPage(props) {
 
           <Typography sx={{ textAlign: "center" }}>
             Already have an account?{" "}
-            <Link href="/signin" variant="body2">
+            <Link href="/login" variant="body2">
               Log in
             </Link>
           </Typography>

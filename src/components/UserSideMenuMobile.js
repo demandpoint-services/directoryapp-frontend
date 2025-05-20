@@ -21,7 +21,7 @@ function UserSideMenuMobile({ open, toggleDrawer, onMenuClick }) {
   const handleLogout = () => {
     handleClose(); // Close the menu
     localStorage.removeItem("user_token");
-    window.location.href = "/signin";
+    window.location.href = "/login";
   };
 
   return (
@@ -68,7 +68,7 @@ function UserSideMenuMobile({ open, toggleDrawer, onMenuClick }) {
             startIcon={<LogoutRoundedIcon />}
             onClick={() => {
               localStorage.removeItem("user_token");
-              window.location.href = "/signin";
+              window.location.href = "/login";
             }}>
             Logout
           </Button>

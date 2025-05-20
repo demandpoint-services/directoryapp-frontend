@@ -113,7 +113,7 @@ function NavBar({ mode, toggleColorMode }) {
                 </Link>
               ) : (
                 <>
-                  <Link href="/signin" passHref>
+                  <Link href="/login" passHref>
                     <Button variant="text" size="small" component="a">
                       Sign in
                     </Button>
@@ -193,7 +193,7 @@ function NavBar({ mode, toggleColorMode }) {
             </Link>
           ) : (
             <>
-              <Link href="/signin" passHref>
+              <Link href="/login" passHref>
                 <Button
                   variant="outlined"
                   fullWidth

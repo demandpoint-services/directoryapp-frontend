@@ -30,7 +30,7 @@ export default function UserOptionsMenu() {
   const handleLogout = () => {
     handleClose();
     localStorage.removeItem("user_token");
-    window.location.href = "/signin";
+    window.location.href = "/login";
   };
 
   return (
