@@ -68,7 +68,7 @@ const SignInContainer = styled(Stack)(({ theme }) => ({
 export default function UserSignInPage(props) {
   const router = useRouter();
   const [form, setForm] = useState({
-    username: "",
+    email: "",
     password: "",
   });
   const [loading, setLoading] = useState(false);
@@ -122,8 +122,22 @@ export default function UserSignInPage(props) {
           <Typography
             component="h1"
             variant="h4"
-            sx={{ width: "100%", fontSize: "clamp(1.5rem, 10vw, 1.8rem)" }}>
-            User Sign In
+            paddingBottom={0}
+            sx={{
+              width: "100%",
+              fontSize: "clamp(1.2rem, 5vw, 1rem)",
+              textAlign: "center",
+            }}>
+            Sign In
+          </Typography>
+          <Typography
+            px={4}
+            sx={{
+              width: "100%",
+              fontSize: ".8rem",
+              textAlign: "center",
+            }}>
+            Welcome back! Sign in to access your dashboard and stay up to date.
           </Typography>
 
           <Box
@@ -131,14 +145,14 @@ export default function UserSignInPage(props) {
             onSubmit={handleSubmit}
             sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
             <FormControl>
-              <FormLabel htmlFor="username">Username</FormLabel>
+              <FormLabel htmlFor="email">Email</FormLabel>
               <TextField
-                name="username"
-                id="username"
+                name="email"
+                id="email"
                 required
                 fullWidth
-                placeholder="johndoe"
-                value={form.username}
+                placeholder="johndoe@xyz.com"
+                value={form.email}
                 onChange={handleChange}
               />
             </FormControl>
