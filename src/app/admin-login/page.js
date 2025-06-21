@@ -129,7 +129,7 @@ export default function AdminLoginPage(props) {
       );
 
       if (response.status === 200) {
-        toast.success("Login successful! Redirecting...");
+        toast.success("Login successful!");
         localStorage.setItem("admin_token", response.data.token);
 
         setTimeout(() => {
@@ -157,7 +157,6 @@ export default function AdminLoginPage(props) {
             sx={{ width: "100%", fontSize: "clamp(1.5rem, 10vw, 1.8rem)" }}>
             Admin Login
           </Typography>
-
           <Box
             component="form"
             onSubmit={handleSubmit}

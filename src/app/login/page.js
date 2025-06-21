@@ -91,7 +91,7 @@ export default function UserLogInPage(props) {
       );
 
       if (response.status === 200) {
-        toast.success("Login successful! Redirecting...", {
+        toast.success("Login successful!", {
           position: "top-right",
           autoClose: 3000,
         });
@@ -100,7 +100,7 @@ export default function UserLogInPage(props) {
         localStorage.setItem("user_token", response.data.token);
 
         setTimeout(() => {
-          router.push("/dashboard");
+          router.push("/");
         }, 2000);
       }
     } catch (error) {

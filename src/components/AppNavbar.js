@@ -58,12 +58,10 @@ export default function AppNavbar({ onMenuClick }) {
             direction="row"
             spacing={1}
             sx={{ justifyContent: "center", mr: "auto" }}>
-            <CustomIcon />
             <Typography
               variant="h4"
               component="h3"
               sx={{
-                color: "text.primary.main",
                 fontFamily: '"Bebas Neue", sans-serif',
                 fontWeight: "regular",
               }}>

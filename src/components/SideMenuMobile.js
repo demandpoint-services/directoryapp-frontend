@@ -19,9 +19,9 @@ function SideMenuMobile({ open, toggleDrawer, onMenuClick }) {
   };
 
   const handleLogout = () => {
-    handleClose(); // Close the menu
-    localStorage.removeItem("admin_token"); // Clear token
-    window.location.href = "/admin-login"; // Redirect manually
+    handleClose();
+    localStorage.removeItem("admin_token");
+    window.location.href = "/admin-login";
   };
 
   return (

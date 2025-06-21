@@ -188,7 +188,7 @@ export default function UserSignupPage(props) {
 
           <Typography sx={{ textAlign: "center" }}>
             Already have an account?{" "}
-            <Link href="/login" variant="body2">
+            <Link href="/" variant="body2">
               Log in
             </Link>
           </Typography>
