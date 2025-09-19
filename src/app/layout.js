@@ -1,4 +1,5 @@
 import { Inter, Roboto_Mono } from "next/font/google";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import "@fontsource/bebas-neue";
 import "./globals.css";
 import ClientSessionWrapper from "./ClientSessionWrapper";
