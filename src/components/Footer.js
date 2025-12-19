@@ -99,16 +99,16 @@ export default function Footer() {
           <Typography variant="body2" sx={{ fontWeight: "medium" }}>
             Product
           </Typography>
-          <Link color="text.secondary" variant="body2" href="#">
-            Features
+          <Link color="text.secondary" variant="body2" href="/aboutus">
+            About Us
           </Link>
-          <Link color="text.secondary" variant="body2" href="#">
+          <Link color="text.secondary" variant="body2" href="/">
             Testimonials
           </Link>
-          <Link color="text.secondary" variant="body2" href="#">
-            Highlights
+          <Link color="text.secondary" variant="body2" href="/contactus">
+            Contact Us
           </Link>
-          <Link color="text.secondary" variant="body2" href="#">
+          <Link color="text.secondary" variant="body2" href="/faq">
             FAQs
           </Link>
         </Box>
@@ -121,13 +121,13 @@ export default function Footer() {
           <Typography variant="body2" sx={{ fontWeight: "medium" }}>
             Company
           </Typography>
-          <Link color="text.secondary" variant="body2" href="#">
-            About us
+          <Link color="text.secondary" variant="body2" href="/selectrole">
+            Register
           </Link>
-          <Link color="text.secondary" variant="body2" href="#">
+          <Link color="text.secondary" variant="body2" href="/selectrole">
             Careers
           </Link>
-          <Link color="text.secondary" variant="body2" href="#">
+          <Link color="text.secondary" variant="body2" href="/selectrole">
             Press
           </Link>
         </Box>
