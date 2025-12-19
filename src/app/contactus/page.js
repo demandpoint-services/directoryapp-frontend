@@ -124,13 +124,10 @@ export default function ContactUsPage() {
                 <Button
                   fullWidth
                   variant="contained"
+                  color="primary"
                   sx={{
                     mt: 2,
-                    py: 1.5,
-                    background: "linear-gradient(to right, #4CAF50, #2E7D32)",
-                    "&:hover": {
-                      background: "linear-gradient(to right, #388E3C, #1B5E20)",
-                    },
+                    py: 1.5
                   }}
                   type="submit">
                   Send Message
