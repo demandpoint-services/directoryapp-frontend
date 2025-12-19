@@ -154,7 +154,8 @@ export default function AdminLoginPage(props) {
           <Typography
             component="h1"
             variant="h4"
-            sx={{ width: "100%", fontSize: "clamp(1.5rem, 10vw, 1.8rem)" }}>
+            sx={{ width: "100%", fontSize: "clamp(1.5rem, 10vw, 1.8rem)" }}
+          >
             Admin Login
           </Typography>
           <Box
@@ -166,7 +167,8 @@ export default function AdminLoginPage(props) {
               flexDirection: "column",
               width: "100%",
               gap: 2,
-            }}>
+            }}
+          >
             <FormControl>
               <FormLabel htmlFor="username">Username</FormLabel>
               <TextField
@@ -223,7 +225,8 @@ export default function AdminLoginPage(props) {
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
-              }}>
+              }}
+            >
               {loading ? (
                 <CircularProgress size={24} color="inherit" />
               ) : (
@@ -237,7 +240,8 @@ export default function AdminLoginPage(props) {
               type="button"
               onClick={handleClickOpen}
               variant="body2"
-              sx={{ alignSelf: "center" }}>
+              sx={{ alignSelf: "center" }}
+            >
               Forgot your password?
             </Link>
           </Box>
@@ -247,7 +251,18 @@ export default function AdminLoginPage(props) {
           <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
             <Typography sx={{ textAlign: "center" }}>
               Don&apos;t have an account?{" "}
-              <Link href="/admin-signup" variant="body2">
+              <Link
+                href="/admin-signup"
+                variant="body2"
+                sx={{
+                  color: "#BA8E23",
+                  textDecoration: "none",
+                  transition: "all 0.3s ease",
+                  "&:hover": {
+                    color: "#8F6B1C",
+                  },
+                }}
+              >
                 Sign up
               </Link>
             </Typography>

@@ -11,6 +11,8 @@ import {
   CssBaseline,
   FormControl,
   FormLabel,
+  FormControlLabel,
+  Checkbox,
   Stack,
   Link,
   Divider,
@@ -21,6 +23,8 @@ import { styled } from "@mui/material/styles";
 import AppTheme from "../shared-theme/AppTheme";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import ForgotPassword from "../../components/ForgotPassword";
+import CircularProgress from "@mui/material/CircularProgress";
 
 const Card = styled(MuiCard)(({ theme }) => ({
   display: "flex",
@@ -73,6 +77,10 @@ export default function UserLogInPage(props) {
   });
   const [loading, setLoading] = useState(false);
   const [formError, setFormError] = useState("");
+  const [open, setOpen] = useState(false);
+
+  const handleClickOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -127,7 +135,8 @@ export default function UserLogInPage(props) {
               width: "100%",
               fontSize: "clamp(1.2rem, 5vw, 1rem)",
               textAlign: "center",
-            }}>
+            }}
+          >
             Sign In
           </Typography>
           <Typography
@@ -136,14 +145,16 @@ export default function UserLogInPage(props) {
               width: "100%",
               fontSize: ".8rem",
               textAlign: "center",
-            }}>
+            }}
+          >
             Welcome back! Sign in to access your dashboard and stay up to date.
           </Typography>
 
           <Box
             component="form"
             onSubmit={handleSubmit}
-            sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
+            sx={{ display: "flex", flexDirection: "column", gap: 2 }}
+          >
             <FormControl>
               <FormLabel htmlFor="email">Email</FormLabel>
               <TextField
@@ -169,15 +180,43 @@ export default function UserLogInPage(props) {
                 value={form.password}
                 onChange={handleChange}
               />
+              <FormControlLabel
+                control={<Checkbox value="remember" color="primary" />}
+                label="Remember me"
+              />
             </FormControl>
+
+            <ForgotPassword open={open} handleClose={handleClose} />
 
             <Button
               type="submit"
               fullWidth
               variant="contained"
-              disabled={loading}>
-              {loading ? "Logging in..." : "Log in"}
+              disabled={loading}
+              sx={{
+                height: 40,
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              {loading ? (
+                <CircularProgress size={24} color="inherit" />
+              ) : (
+                "Login"
+              )}
             </Button>
+
+            <Link
+              href="#"
+              component="button"
+              type="button"
+              onClick={handleClickOpen}
+              variant="body2"
+              sx={{ alignSelf: "center" }}
+            >
+              Forgot your password?
+            </Link>
 
             {formError && <Alert severity="error">{formError}</Alert>}
           </Box>
@@ -187,8 +226,19 @@ export default function UserLogInPage(props) {
           </Divider>
 
           <Typography sx={{ textAlign: "center" }}>
-            Don't have an account?{" "}
-            <Link href="/signup" variant="body2">
+            Don&apos;t have an account?{" "}
+            <Link
+              href="/signup"
+              variant="body2"
+              sx={{
+                color: "#BA8E23",
+                textDecoration: "none",
+                transition: "all 0.3s ease",
+                "&:hover": {
+                  color: "#8F6B1C",
+                },
+              }}
+            >
               Sign up
             </Link>
           </Typography>
