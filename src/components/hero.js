@@ -99,13 +99,13 @@ export default function Hero() {
             size="medium"
             sx={{ minWidth: "fit-content" }}
             href="/selectrole">
-            Join Now
+            Register to Join Now
           </Button>
           <Typography
             variant="caption"
             color="text.secondary"
             sx={{ textAlign: "center" }}>
-            By clicking &quot;Join now&quot; you agree to our&nbsp;
+            By clicking the button you agree to our&nbsp;
             <Link href="#" color="primary">
               Terms & Conditions
             </Link>
